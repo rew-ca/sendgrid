@@ -104,6 +104,10 @@ module SendGrid
     @sg_asm_group_id = asm_group_id
   end
 
+  def sendgrid_ip_pool(ip_pool_name)
+    @ip_pool_name = ip_pool_name
+  end
+
   # Call within mailer method to override the default value.
   def sendgrid_category(category)
     @sg_category = category
@@ -234,6 +238,9 @@ module SendGrid
 
     # Set asm_group_id if set by the user
     header_opts[:asm_group_id] = @sg_asm_group_id unless @sg_asm_group_id.blank?
+
+    # Set ip_pool_name if set by the user
+    header_opts[:ip_pool] = @ip_pool_name unless @ip_pool_name.blank?
 
     #Set send_at if set by the user
     header_opts[:send_at] = @sg_send_at unless @sg_send_at.blank?
